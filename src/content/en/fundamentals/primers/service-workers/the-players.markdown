@@ -18,16 +18,14 @@ authors:
  
 ### Clients
 
-These players install and use a service worker. Generally, they  are web
-pages. Though there are [other types of clients](https://developer.mozilla.org/en-US/docs/Web/API/Client)
-,  this primer focuses on web page clients.
+A client is a web page that uses a service worker.
 
 ### Service worker script
 
 This player is a background script that acts as a network proxy for one or
 more clients. Though its name implies activity, you can almost think of a
-service worker as a passive player, sitting around waiting for its events to
-be called. It can't even manipulate  its clients' DOMs.
+service worker as a passive player, one that only runs when one of its
+event handlders is fired. It can't even manipulate  its clients' DOMs.
 
 ### Clients don't need service workers
 
