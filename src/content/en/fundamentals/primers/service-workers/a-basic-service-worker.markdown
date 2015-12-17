@@ -2,7 +2,7 @@
 layout: shared/narrow
 published: false
 title: "Setting up a basic service worker"
-description: "This section describes the most basic service worker possible. It shows you how a client gets, or registers, a service worker. It shows you how a service worker prepares to act as a proxy for its clients. Both subjects have more depth than is shown in this section. It's not intended to be comprehensive; It's intended to give you a basic foundation on which to build service worker knowledge."
+description: "This section describes the most basic service worker possible. It shows you how a client gets, or registers, a service worker. It shows you how a service worker prepares to act as a proxy for its clients. Both subjects have more depth than is shown in this section. It's not intended to be comprehensive; it's intended to give you a basic foundation on which to build service worker knowledge."
 authors:
   - josephmedley
 published_on: 2015-10-01
@@ -10,17 +10,17 @@ updated_on: 2015-10-01
 order: 4
 key-takeaways:
   tldr:   
-  - "Call <code>register()</code> to install a service worker." 
+  - "Call <code>register()</code> to get a service worker." 
   - "Learn to use promises before attempting service workers."
-  - "Service workers have a limited scope and requrie HTTPS."
-  - "The install process has two events: install and activate."
-  - "The user has to navigate before the service worker start proxying."
-  - "Call <code>waintUntil()</code> to keep a service worker out of its own way."
+  - "Service workers have a limited scope and require HTTPS."
+  - "The installation process has two events: install and activate."
+  - "To start proxying, a service worker needs a call to <code>clients.claim()</code> or a user navigation."
+  - "Pass a promise to <code>waitUntil()</code> to indicate success/failure of asynchronous tasks."
 notes:
   promises:
     - "<b>Promises</b>&mdash;Notice the use of <code>.then()</code> at the end of the <code>register()</code> function. This is an example of an ECMAScript 2015 construct called a <a href='http://www.html5rocks.com/en/tutorials/es6/promises/'>promise</a>. Service workers make heavy use of promises. If you've never used promises before, you should familiarize yourself with them before trying to implement a service worker."
   https-only:
-    - "<b>HTTPS Only</b>&mdash;Service workers can do almost whatever they want to HTTP requests and responses. Since this would make them targets for man-in-the-middle attacks, they must be served over HTTPS. This doesn't mean you need HTTPS for development and testing. Service workers served over localhost will also work."
+    - "<b>HTTPS Only</b>&mdash;Service workers can do almost whatever they want to HTTPS requests and responses. Since this would make them targets for man-in-the-middle attacks, they must be served over HTTPS. localhost is exempt from the HTTPS only rule, simplifying development and testing."
   sws-dont-control:
     - "<b>Service Workers Don't Take Control</b>&mdash;If you look around the web, you'll find that many of the pages discussing service workers refer to the service worker as 'taking control' of a page. But as we saw earlier, a service workers can't change a page's DOM. That's why it may be more accurate to think of a service worker as ready to proxy."
 ---
@@ -30,7 +30,7 @@ notes:
   how a client gets, or registers, a service worker. It shows you how a service 
   worker prepares to act as a proxy for its clients. Both subjects have more 
   depth than is shown in this section. It's not intended to be comprehensive; 
-  It's intended to give you a basic foundation on which to build service worker 
+  it's intended to give you a basic foundation on which to build service worker 
   knowledge.
 </p>
 
@@ -41,7 +41,9 @@ notes:
 ## A client registers a service worker
 
 To use a service worker, a client tells the browser to install it by calling
-`register()`. More than one page can implement `register()`. You can implement
+`register()`. More than one page can implement `register()`. In fact, all the
+
+You can implement
 it in either an inline script or a separate JavaScript file. Only the first a
 browser encounters trigger the download. The most basic register implementation
 looks like this:
