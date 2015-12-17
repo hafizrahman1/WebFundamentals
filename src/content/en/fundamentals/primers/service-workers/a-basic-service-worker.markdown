@@ -41,12 +41,10 @@ notes:
 ## A client registers a service worker
 
 To use a service worker, a client tells the browser to install it by calling
-`register()`. More than one page can implement `register()`. In fact, all the
-
-You can implement
-it in either an inline script or a separate JavaScript file. Only the first a
-browser encounters trigger the download. The most basic register implementation
-looks like this:
+`register()`. More than one page can implement `register()` because the
+browser verifies existence of the service worker for you and only the first
+call to `register()` triggers the service worker's download. The most basic 
+register implementation looks like this:
 
 {% highlight javascript %}
 // Does the browser support service workers?
@@ -60,15 +58,15 @@ if ('serviceWorker' in navigator) {
 };
 {% endhighlight %}
 
-There's little more that needs to be said about clients. Now let's talk about 
-the service worker itself.
+There's more to learn about clients, but that's another lesson. Now let's 
+talk about the service worker itself.
 
 {% include shared/note.liquid list=page.notes.promises %}
 
 ## Where can the service worker play?
 
 A client tells the service worker where it can operate. This is called the
-service worker's scope, and it's the lowest level of your website where the
+service worker's scope, and it's the highest level of your website where the
 service worker can be used. Let's look at the registration code again, but with
 some changes to the `register()` parameters.
 
@@ -97,25 +95,33 @@ sellers section  is at `example.com/sellers`. A service worker with a scope of
 clients under  `example.com/sellers`. Similarly, a service worker with a scope
 of `/sellers` can  only serve clients under `example.com/sellers`.
 
+A less than obvious corollary of this that service workers can't be stored in 
+an assets folder. For example a registration like this will always fail:
+
+{% highlight javascript %}
+register('/assets/js/service-worker.js', {scope: '/'})
+{% endhighlight %}
+
+For the scope of this service worker to be `/` it has to be served from 
+`/service-worker.js`
+
 {% include shared/note.liquid list=page.notes.https-only %}
 
 ## A service worker installs and activates
 
 Let’s look at what happens during the installation of the service worker. To set 
-up a service worker, you need to implement two events:
+up a service worker, you need to implement two event handlers:
 
 * `install`
 * `activate`
 
-These events run one time for a service worker in a particular scope, no matter 
+These events are fired once for a service worker in a particular scope, no matter 
 how many clients use it.
 
 ### Install
 
 Use the install event to get everything this service worker needs to operate.
-This could include initializing caches,  prefetching data, handling old versions
-of the current service worker, or  handling other service workers in
-the same scope.
+This could include initializing caches, or prefetching data.
 
 The install event is kicked off immediately after the script containing it is
 downloaded.
@@ -146,9 +152,10 @@ self.addEventListener('activate', function(activateEvent) {
 ## The user navigates
 
 Now that the service worker is installed, it's doing something for our page,
-right? No quite. For the service worker to start handling requests, the user
-needs to navigate. Either you can wait for the user to open another page in the
-same scope or you can ask the user to reload.
+right? Not quite. For the service worker to start handling requests, it 
+needs a call to <code>clients.claim()</code> or the user needs to navigate. 
+For the later, you can either you can wait for the user to open another page 
+in the same scope or you can ask the user to reload.
 
 {% include shared/remember.liquid title="Aside" list=page.notes.sws-dont-control %}
 
@@ -157,16 +164,9 @@ same scope or you can ask the user to reload.
 You might've noticed that both the install and activate events contain a method
 named `waitUntil()`. This method prevents server workers from getting in their
 own way. In the install event it delays firing of the activate event. In the
-activate event it delays other service worker events (though clients will behave
-as though the service worker doesn't exist until this method returns).This
-method must either be empty or take something that resolves to a promise.
+activate event it delays other service worker events. This method takes something
+that resolves to a promsie. If you don't want to wait for a promsie to resolve
+you can leave it out.
 
 But a promise to what? Before answering, let's take a detour and talk about
 debugging.
-
-
-
-
-
-
-
