@@ -29,14 +29,16 @@ self.addEventListener('fetch', function(fetchEvent) {
 });
 {% endhighlight %}
 
-The `fetch` event contains an HTTP request. You can either use it to retrieve 
+The `fetch` event contains an HTTPS request. You can either use it to retrieve 
 something from cache or pass it to the network. There are several ways to do 
 that, covered in 
 [Jake Archibald's Offline Cookbook](https://jakearchibald.com/2014/offline-cookbook/). 
 The example below intercepts every request from a client and tries to 
 retrieve it from the cache. If retrieval fails, it passes the request to 
-the network using the `fetch()` method. Finally, it returns an HTTP 
-response with a call to `event.respondWith()`.
+the network using the `fetch()` method. Finally, it returns an HTTPS 
+response with a call to `event.respondWith()`. From the controlled page's point 
+of view the returned HTTPS response is indistinguishable from one returned by 
+the server. 
 
 {% highlight javascript %}
 self.addEventListener('fetch', function(fetchEvent) {
