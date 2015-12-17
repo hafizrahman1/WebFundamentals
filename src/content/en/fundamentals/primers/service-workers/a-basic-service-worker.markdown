@@ -139,7 +139,8 @@ self.addEventListener('install', function(installEvent) {
 Use activate to clean up after a previous version of a service worker. This may
 include migrating data in ways that can't be done while the old service worker
 was active. This event is **not** called when a terminated service worker is
-revived.
+revived. This event is only fired when a service worker is first installed or 
+when the service worker is updated.
 
 {% highlight javascript %}
 self.addEventListener('activate', function(activateEvent) {
