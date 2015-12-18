@@ -168,6 +168,3 @@ own way. In the install event it delays firing of the activate event. In the
 activate event it delays other service worker events. This method takes something
 that resolves to a promsie. If you don't want to wait for a promsie to resolve
 you can leave it out.
-
-But a promise to what? Before answering, let's take a detour and talk about
-debugging.
