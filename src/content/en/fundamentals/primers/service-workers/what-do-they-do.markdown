@@ -2,7 +2,7 @@
 layout: shared/narrow
 published: false
 title: "What do they do?"
-description: "Site search is vital for helping mobile users find what they’re looking for in a hurry"
+description: "Service workers provide web pages with capabilities that make them more like native apps. Here are a list of characteristics and apps or sites that demonstrate their use."
 authors:
 - josephmedley
 published_on: 2015-10-01
