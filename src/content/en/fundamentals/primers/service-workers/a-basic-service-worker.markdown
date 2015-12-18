@@ -42,9 +42,9 @@ notes:
 
 To use a service worker, a client tells the browser to install it by calling
 `register()`. More than one page can implement `register()` because the
-browser verifies existence of the service worker for you and only the first
-call to `register()` triggers the service worker's download. The most basic 
-register implementation looks like this:
+browser verifies the existence of the service worker for you and only the first
+call to `register()` triggers the service worker's download and installation. 
+The most basic service worker registration looks like this:
 
 {% highlight javascript %}
 // Does the browser support service workers?
@@ -150,7 +150,7 @@ self.addEventListener('activate', function(activateEvent) {
 });
 {% endhighlight %}
 
-## The user navigates
+## The service worker handles requests
 
 Now that the service worker is installed, it's doing something for our page,
 right? Not quite. For the service worker to start handling requests, it 
