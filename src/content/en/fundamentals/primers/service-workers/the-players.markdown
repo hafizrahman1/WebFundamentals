@@ -30,10 +30,12 @@ event handlders is fired. It can't even manipulate  its clients' DOMs.
 ### Clients don't need service workers
 
 If you follow the principles of progressive enhancement, you'll be happy to know 
-that clients should function without service workers. This sounds like a 
-contradiction, but it's key to the service worker's design. 
+that clients should function without service workers. This is the key to the 
+service worker's design. 
 
 First and foremost, it allows for user engagement to occur while the service 
-worker is loading and installing. It also allows the page to function on 
-browsers that don't support service workers and simplifies adding service 
-workers to existing pages. 
+worker is loading and installing. This is because the service worker life cycle 
+is independent of a client page's life cycle. Hence, the service worker 
+doesn't block the page. It also allows the page to function on  browsers that 
+don't support service workers and simplifies adding service workers to existing 
+pages. 
