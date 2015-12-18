@@ -91,9 +91,9 @@ in the scope.
 For example, say that you have an auction site with different features for
 buyers  and sellers. The buyers section is at `example.com/buyers` and the
 sellers section  is at `example.com/sellers`. A service worker with a scope of
-`/buyers` it can only  serve clients under `example.com/buyers`. It cannot serve
+`/buyers` it can only control clients under `example.com/buyers`. It cannot control
 clients under  `example.com/sellers`. Similarly, a service worker with a scope
-of `/sellers` can  only serve clients under `example.com/sellers`.
+of `/sellers` can  only control clients under `example.com/sellers`.
 
 A less than obvious corollary of this that service workers can't be stored in 
 an assets folder. For example a registration like this will always fail:
@@ -163,7 +163,7 @@ in the same scope or you can ask the user to reload.
 ## The waitUntil() method
 
 You might've noticed that both the install and activate events contain a method
-named `waitUntil()`. This method prevents server workers from getting in their
+named `waitUntil()`. This method prevents service workers from getting in their
 own way. In the install event it delays firing of the activate event. In the
 activate event it delays other service worker events. This method takes something
 that resolves to a promsie. If you don't want to wait for a promsie to resolve
