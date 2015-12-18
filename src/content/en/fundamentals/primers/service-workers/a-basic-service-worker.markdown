@@ -22,7 +22,7 @@ notes:
   https-only:
     - "<b>HTTPS Only</b>&mdash;Service workers can do almost whatever they want to HTTPS requests and responses. Since this would make them targets for man-in-the-middle attacks, they must be served over HTTPS. localhost is exempt from the HTTPS only rule, simplifying development and testing."
   sws-dont-control:
-    - "<b>Service Workers Don't Take Control</b>&mdash;If you look around the web, you'll find that many of the pages discussing service workers refer to the service worker as 'taking control' of a page. But as we saw earlier, a service workers can't change a page's DOM. That's why it may be more accurate to think of a service worker as ready to proxy."
+    - "<b>Taking Control</b>&mdash;All service worker documentation, including [the specification](http://www.w3.org/TR/service-workers/) refers to a service worker 'controlling' a page. But as we saw earlier, a service worker can't change a page's DOM. Neither can it initiate actions on its own. It's often useful to think of a service worker as ready to proxy rather than controlling."
 ---
 
 <p class="intro">
