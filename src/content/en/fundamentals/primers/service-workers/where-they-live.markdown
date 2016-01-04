@@ -1,8 +1,8 @@
 ---
 layout: shared/narrow
 published: false
-title: "The Players"
-description: "A basic service worker implementation has two types of players."
+title: "Where does the code live?"
+description: "A basic service worker implementation requires code in two places."
 published_on: 2015-10-01
 updated_on: 2015-10-01
 order: 3
@@ -12,20 +12,22 @@ authors:
 ---
 
 <p class="intro">
-  A basic service worker implementation has two types of players.
+  A basic service worker implementation requires code in two places.
 </p>
 
  
 ### Clients
 
-A client is a web page that uses a service worker.
+A client is a web page that uses a service worker. One or more clients 
+can use the same service worker. All they need do is implement the 
+registration code, which we'll look at in the next section.
 
 ### Service worker script
 
-This player is a background script that acts as a network proxy for one or
+This is a background script that acts as a network proxy for one or
 more clients. Though its name implies activity, you can almost think of a
 service worker as a passive player, one that only runs when one of its
-event handlders is fired. It can't even manipulate  its clients' DOMs.
+event handlders are fired. It can't even manipulate its clients' DOM's.
 
 ### Clients don't need service workers
 
@@ -36,6 +38,6 @@ service worker's design.
 First and foremost, it allows for user engagement to occur while the service 
 worker is loading and installing. This is because the service worker life cycle 
 is independent of a client page's life cycle. Hence, the service worker 
-doesn't block the page. It also allows the page to function on  browsers that 
+doesn't block the page. It also allows the page to function on browsers that 
 don't support service workers and simplifies adding service workers to existing 
 pages. 
