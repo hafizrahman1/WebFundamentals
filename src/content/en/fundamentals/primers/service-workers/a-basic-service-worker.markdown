@@ -54,7 +54,7 @@ if ('serviceWorker' in navigator) {
     // Actions not covered by this primer.
   });
 } else {
-  // No, but this client should work anyway.
+  // service worker not supported.
 };
 {% endhighlight %}
 
