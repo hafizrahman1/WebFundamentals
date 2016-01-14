@@ -27,7 +27,7 @@ registration code, which we'll look at in the next section.
 This is a background script that acts as a network proxy for one or
 more clients. Though its name implies activity, you can almost think of a
 service worker as a passive player, one that only runs when one of its
-event handlders are fired. It can't even manipulate its clients' DOM's.
+event handlders are fired. It can't even manipulate its clients' DOMs.
 
 ### Clients don't need service workers
 
