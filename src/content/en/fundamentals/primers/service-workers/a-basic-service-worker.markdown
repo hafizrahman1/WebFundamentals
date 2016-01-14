@@ -22,7 +22,7 @@ notes:
   https-only:
     - "<b>HTTPS Only</b>&mdash;Service workers can do almost whatever they want to HTTPS requests and responses. Since this would make them targets for man-in-the-middle attacks, they must be served over HTTPS. localhost is exempt from the HTTPS only rule, simplifying development and testing."
   sws-dont-control:
-    - "<b>Taking Control</b>&mdash;All service worker documentation, including [the specification](http://www.w3.org/TR/service-workers/) refers to a service worker 'controlling' a page. But as we saw earlier, a service worker can't change a page's DOM. Neither can it initiate actions on its own. It's often useful to think of a service worker as ready to proxy rather than controlling."
+    - "<b>Taking Control</b>&mdash;All service worker documentation, including [the specification](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/) refers to a service worker 'controlling' a page. But as we saw earlier, a service worker can't change a page's DOM. Neither can it initiate actions on its own. It's often useful to think of a service worker as ready to proxy rather than controlling."
 ---
 
 <p class="intro">
@@ -109,14 +109,16 @@ For the scope of this service worker to be `/` it has to be served from
 
 ## A service worker installs and activates
 
-Let’s look at what happens during the installation of the service worker. To set 
-up a service worker, you need to implement two event handlers:
+Let’s look at what happens during the installation of the service worker. 
+Two event handlers can be used during service worker installation:
 
 * `install`
 * `activate`
 
-These events are fired once for a service worker in a particular scope, no matter 
-how many clients use it.
+These events are fired once for a given service worker version in a 
+particular scope, no matter how many clients use it. The only time
+these events will fire a second time is when a new version of the 
+service worker is downloaded.
 
 ### Install
 
