@@ -5,8 +5,8 @@ title: "Setting up a basic service worker"
 description: "This section describes the most basic service worker possible. It shows you how a client gets, or registers, a service worker. It shows you how a service worker prepares to act as a proxy for its clients. Both subjects have more depth than is shown in this section. It's not intended to be comprehensive; it's intended to give you a basic foundation on which to build service worker knowledge."
 authors:
   - josephmedley
-published_on: 2015-10-01
-updated_on: 2015-10-01
+published_on: 2016-01-13
+updated_on: 2015-01-13
 order: 4
 key-takeaways:
   tldr:   
@@ -14,7 +14,7 @@ key-takeaways:
   - "Learn to use promises before attempting service workers."
   - "Service workers have a limited scope and require HTTPS."
   - "The installation process has two events: install and activate."
-  - "To start proxying, a service worker needs a call to <code>clients.claim()</code> or a user navigation."
+  - "To start proxying, a service worker needs a call to <code>clients.claim()</code> or the user needs to navigation."
   - "Pass a promise to <code>waitUntil()</code> to indicate success/failure of asynchronous tasks."
 notes:
   promises:
